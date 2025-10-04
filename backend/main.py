@@ -54,48 +54,8 @@ databricks_api: Optional[DatabricksAPIIntegration] = None
 pdf_manager: Optional[PDFManager] = None
 ai_engine: Optional[DatabricksAIEngine] = None
 
-def clean_result_for_json(obj):
-    """
-    Recursively clean a result object to remove bytes and other non-JSON serializable objects.
-    """
-    if isinstance(obj, dict):
-        cleaned = {}
-        for key, value in obj.items():
-            if key == 'file_content' and isinstance(value, bytes):
-                # Skip file_content bytes to avoid JSON serialization error
-                cleaned[key] = f"<bytes object: {len(value)} bytes>"
-            else:
-                cleaned[key] = clean_result_for_json(value)
-        return cleaned
-    elif isinstance(obj, list):
-        return [clean_result_for_json(item) for item in obj]
-    elif isinstance(obj, bytes):
-        return f"<bytes object: {len(obj)} bytes>"
-    else:
-        return obj
 
-# Pydantic models for request/response
-class ConnectionConfig(BaseModel):
-    host: str
-    token: str
 
-class AIConfig(BaseModel):
-    provider: str  # "databricks" or "openai"
-    model: str
-    cluster_id: Optional[str] = None
-    openai_api_key: Optional[str] = None
-
-class ChatMessage(BaseModel):
-    question: str
-    pdf_path: str
-    conversation_id: Optional[str] = None
-
-class ChatResponse(BaseModel):
-    success: bool
-    answer: Optional[str] = None
-    conversation_id: Optional[str] = None
-    metadata: Optional[Dict[str, Any]] = None
-    error: Optional[str] = None
 
 # Dependency to get databricks connection
 async def get_databricks_connection():
