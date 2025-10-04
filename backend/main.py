@@ -158,12 +158,7 @@ async def setup_system():
         return {"success": False, "error": str(e)}
 
 
-@app.post("/api/pdf/upload")
-async def upload_pdf(
-    file: UploadFile = File(...),
-    create_notebook: bool = Form(False),
-    db: DatabricksAPIIntegration = Depends(get_databricks_connection)
-):
+
     """Upload PDF to Databricks workspace using proven method."""
     try:
         # Validate file type
@@ -273,10 +268,7 @@ async def upload_pdf_direct_method(file_content: bytes, filename: str, db: Datab
             "error": str(e),
             "conversation_id": message.conversation_id
         }
-@app.post("/api/analyze/pdf")
-async def analyze_pdf_direct(
-    db: DatabricksAPIIntegration = Depends(get_databricks_connection)
-):
+
     """Analyze PDF with hardcoded file path and multiple prompts."""
     try:
         import sys
