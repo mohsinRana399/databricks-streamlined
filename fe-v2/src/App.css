@@ -1,0 +1,87 @@
+#root {
+  text-align: center;
+  display: flex;
+  width: 100vw;
+  /* height: 100vh; */
+}
+.app-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 100vh;
+  font-family: sans-serif;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.led {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.led-green {
+  background-color: #4caf50;
+  box-shadow: 0 0 5px #4caf50;
+}
+
+.led-red {
+  background-color: #f44336;
+  box-shadow: 0 0 5px #f44336;
+}
+
+.upload-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+.retry-btn {
+  margin-left: 10px;
+  padding: 4px 8px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+.retry-btn:hover {
+  background-color: #0056b3;
+}
+.analysis-results {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 12px;
+}
+.individual-responses {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.response-card {
+  margin-bottom: 15px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.answer-box {
+  padding: 10px;
+  border-radius: 8px;
+  white-space: pre-wrap;
+  font-family: monospace;
+  font-size: 0.9rem;
+  text-align: left;
+}
